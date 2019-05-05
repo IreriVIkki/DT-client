@@ -2,7 +2,7 @@
     "name": "dt",
     "version": "0.1.0",
     "private": true,
-    "proxy": "http://18.224.69.38",
+    "proxy": "http://18.224.69.38:80",
     "dependencies": {
         "axios": "^0.18.0",
         "http-proxy-middleware": "^0.19.1",
