@@ -9,7 +9,7 @@ import { YOUTUBE_KEY } from "../config/keys";
 import "../bootstrap.min.css";
 const Axios = require("axios");
 const moment = require("moment");
-const IP = "http://18.224.69.38/api";
+const IP = "http://18.224.69.38:80/api";
 
 export class DailyTube extends Component {
     state = {
