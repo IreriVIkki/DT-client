@@ -2,7 +2,7 @@
     "name": "dt",
     "version": "0.1.0",
     "private": true,
-    "proxy": "http://localhost:5000",
+    "proxy": "http://18.224.69.38:80",
     "dependencies": {
         "axios": "^0.18.0",
         "moment": "^2.24.0",

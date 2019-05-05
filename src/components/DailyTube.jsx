@@ -181,7 +181,7 @@ export class DailyTube extends Component {
                             </button>
                         </div>
                         <div className="d-flex flex-column">
-                            {!!accounts ? (
+                            {accounts !== null ? (
                                 <AllAccounts
                                     accounts={accounts}
                                     onEditAccountInfo={
@@ -190,14 +190,14 @@ export class DailyTube extends Component {
                                 />
                             ) : (
                                 <div>
-                                    {!!!accounts.length ? (
-                                        <div>
-                                            <span>Loading Accounts</span>
-                                        </div>
-                                    ) : (
+                                    {accounts === null ? (
                                         <span className="text-warning">
                                             No accounts have been added yet
                                         </span>
+                                    ) : (
+                                        <div>
+                                            <span>Loading Accounts</span>
+                                        </div>
                                     )}
                                 </div>
                             )}
@@ -354,12 +354,10 @@ export class DailyTube extends Component {
     fetchAllAccounts = async () => {
         let accounts;
         await Axios.get("/api/gets_all_accounts")
-            .then(
-                response =>
-                    (accounts = response.data.sort(
-                        (a, b) => b.current - a.current,
-                    )),
-            )
+            .then(response => {
+                console.log("TCL: fetchAllAccounts -> response", response);
+                accounts = response.data.sort((a, b) => b.current - a.current);
+            })
             .catch();
         return accounts;
     };

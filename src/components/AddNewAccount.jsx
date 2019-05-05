@@ -83,7 +83,7 @@ export class AddNewAccount extends Component {
                         <div className="alert alert-warning d-flex align-items-center">
                             <span>{this.state.error}</span>
                             <i
-                                class="material-icons ml-auto px-3 pointer"
+                                className="material-icons ml-auto px-3 pointer"
                                 onClick={() => this.setState({ error: "" })}
                             >
                                 highlight_off
