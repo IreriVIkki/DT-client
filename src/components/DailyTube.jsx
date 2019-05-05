@@ -9,6 +9,7 @@ import { YOUTUBE_KEY } from "../config/keys";
 import "../bootstrap.min.css";
 const Axios = require("axios");
 const moment = require("moment");
+const IP = "http://18.224.69.38:443/api";
 
 export class DailyTube extends Component {
     state = {
@@ -90,7 +91,7 @@ export class DailyTube extends Component {
     handleDeleteAccount = () => {
         const id = this.state.accountInfo.upload.id;
         console.log("TCL: DailyTube -> handleDeleteAccount -> id", id);
-        Axios.delete(`/api/delete_account?account_id=${id}`, {
+        Axios.delete(`${IP}/delete_account?account_id=${id}`, {
             headers: this.state.headers,
         })
             .then(response => {
@@ -111,7 +112,7 @@ export class DailyTube extends Component {
     addingNewDailyMotionChannel = () => {
         const { newAccountObject } = this.state;
         const body = JSON.stringify(newAccountObject);
-        Axios.post("/api/create_new_account", body, {
+        Axios.post(`${IP}/create_new_account`, body, {
             headers: this.state.headers,
         })
             .then(response => {
@@ -324,7 +325,7 @@ export class DailyTube extends Component {
     handleUpdateAccountSettings = async newAccountSettings => {
         const body = JSON.stringify(newAccountSettings);
         const id = newAccountSettings.accountId;
-        Axios.put(`/api/update_account?account_id=${id}`, body, {
+        Axios.put(`${IP}/update_account?account_id=${id}`, body, {
             headers: this.state.headers,
         })
             .then(response => {
@@ -341,7 +342,7 @@ export class DailyTube extends Component {
     };
 
     fetchAccountInfo = accountId => {
-        Axios.get(`/api/get_account_info?account_id=${accountId}`)
+        Axios.get(`${IP}/get_account_info?account_id=${accountId}`)
             .then(response => {
                 console.log("TCL: YouTube -> response", response.data);
                 this.setState({ accountInfo: response.data });
@@ -353,7 +354,7 @@ export class DailyTube extends Component {
 
     fetchAllAccounts = async () => {
         let accounts;
-        await Axios.get("/api/gets_all_accounts")
+        await Axios.get(`${IP}/gets_all_accounts`)
             .then(response => {
                 console.log("TCL: fetchAllAccounts -> response", response);
                 accounts = response.data.sort((a, b) => b.current - a.current);
@@ -374,7 +375,7 @@ export class DailyTube extends Component {
 
     fetchAllVideos = async () => {
         let videos;
-        await Axios.get("/api/get_all_video_ids")
+        await Axios.get(`${IP}/get_all_video_ids`)
             .then(response => {
                 videos = response.data;
             })
@@ -385,7 +386,7 @@ export class DailyTube extends Component {
     fetchUnUploadedAccountVideos = async accountId => {
         let videos;
         await Axios.get(
-            `/api/get_un_uploaded_account_videos?account_id=${accountId}`,
+            `${IP}/get_un_uploaded_account_videos?account_id=${accountId}`,
         )
             .then(response => {
                 videos = response.data;
@@ -421,7 +422,7 @@ export class DailyTube extends Component {
             isCurrent: true,
         });
 
-        Axios.put(`/api/update_account?account_id=${nextAccountId}`, body, {
+        Axios.put(`${IP}/update_account?account_id=${nextAccountId}`, body, {
             headers: this.state.headers,
         })
             .then(async response => {
@@ -530,7 +531,7 @@ export class DailyTube extends Component {
             searchIds,
         });
 
-        Axios.put(`/api/update_account?account_id=${id}`, body, {
+        Axios.put(`${IP}/update_account?account_id=${id}`, body, {
             headers: this.state.headers,
         })
             .then(async response => {
@@ -564,7 +565,7 @@ export class DailyTube extends Component {
             filePath,
         });
 
-        Axios.post(`/api/download_video`, body, {
+        Axios.post(`${IP}/download_video`, body, {
             headers: this.state.headers,
         })
             .then(async response => {
@@ -603,7 +604,7 @@ export class DailyTube extends Component {
             videoId: currentVideoId,
         });
 
-        Axios.post(`/api/upload_video?account_id=${id}`, body, {
+        Axios.post(`${IP}/upload_video?account_id=${id}`, body, {
             headers: this.state.headers,
         })
             .then(async response => {
@@ -651,7 +652,7 @@ export class DailyTube extends Component {
             thumbnailUrl: thumbnails[0].url,
         });
 
-        Axios.post(`/api/publish_video?account_id=${id}`, body, {
+        Axios.post(`${IP}/publish_video?account_id=${id}`, body, {
             headers: this.state.headers,
         })
             .then(async response => {
