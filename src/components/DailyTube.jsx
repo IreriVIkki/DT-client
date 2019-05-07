@@ -5,8 +5,8 @@ import ConfirmDeleteAccount from "./ConfirmDeleteAccount";
 import AddNewAccount from "./AddNewAccount";
 import Loader from "../loader.gif";
 import CurrentVideo from "./CurrentVideo";
-import { YOUTUBE_KEY } from "../config/keys";
 import "../bootstrap.min.css";
+const YOUTUBE_KEY = "AIzaSyCO4-5uIuXP-6yB7f_pt2qMTRUNRbMR02M";
 const Axios = require("axios");
 const moment = require("moment");
 
