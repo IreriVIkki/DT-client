@@ -11,9 +11,6 @@ package-lock.json
 # testing
 /coverage
 
-# production
-/build
-
 # misc
 .DS_Store
 .env.local
@@ -35,3 +32,4 @@ info.json
 dev.js
 YouTube.jsx
 /server
+/build
